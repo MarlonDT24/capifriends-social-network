@@ -53,6 +53,8 @@ El objetivo es aprender un stack actual y, al mismo tiempo, construir una base s
   ```
 Abrir en navegador: http://localhost:3000
 
+---
+
 ## ⚙️ Scripts Disponibles
 npm run dev → Inicia el servidor de desarrollo
 
@@ -61,6 +63,8 @@ npm run build → Genera el build de producción
 npm run start → Sirve el build en producción
 
 npm run lint → Ejecuta ESLint para verificar la calidad del código
+
+---
 
 ## 🗺️ Documentación del Proyecto
 Toda la documentación se encuentra en la carpeta docs/ e incluye:
@@ -76,6 +80,8 @@ convenciones.md → Reglas de commits, ramas y estilo
 roadmap.md → Plan de desarrollo y fases
 
 checklists.md → Listas de control para PRs y releases
+
+---
 
 ## 📄 Licencia
 Este proyecto está bajo licencia MIT. Puedes usarlo, modificarlo y distribuirlo libremente.
