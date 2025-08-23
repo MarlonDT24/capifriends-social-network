@@ -22,3 +22,14 @@
 - Design tokens:
   - `background/foreground`, `muted/muted-foreground`, `border`, `brand` y tokens para `header`/`footer`.
 - Preparado para siguientes pasos: auth (signup/login) y base de datos `profiles` con RLS.
+
+## 2025-08-23
+- Creada tabla `public.profiles`: id (uuid, PK, FK→auth.users ON DELETE CASCADE), username (unique), full_name, avatar_url, bio, created_at (now()).
+- RLS pendiente de activar y definir policies.
+
+## 2025-08-23
+- DB lista: `public.profiles` + FK→`auth.users` (ON DELETE CASCADE), RLS y policies (select para authenticated, insert/update solo propia fila).
+- Función `public.handle_new_user()` + trigger `on_auth_user_created`: provisioning automático de perfiles.
+- Índice `profiles_username_lower_idx` para búsquedas insensibles a mayúsculas.
+- Configurados clientes Supabase: `app/lib/supabaseClient.js` (browser) y `app/lib/supabaseServer.js` (SSR).
+- Próximo: páginas `/signup` y `/login`, protección `/feed`, `/profile/edit` + Storage `avatars`.
