@@ -66,6 +66,18 @@
 
   /* Radios y sombras por defecto de la UI para los posts */
   --radius: 0.75rem;
+
+  /* Para tarjetas (bg-card / text-card-foreground) */
+  --color-card: var(--background);                
+  --color-card-foreground: var(--foreground);    
+
+  /* Para popovers/menús (bg-popover / text-popover-foreground) */
+  --color-popover: var(--background);            
+  --color-popover-foreground: var(--foreground); 
+
+  /* Para hovers y fondos sutiles (bg-accent / text-accent-foreground) */
+  --color-accent: var(--muted);                  
+  --color-accent-foreground: var(--foreground);  
 }
 
 

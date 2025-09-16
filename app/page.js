@@ -1,6 +1,21 @@
 import Link from "next/link";
+import { createServerSupabase } from "@/lib/supabaseServer";
+import { redirect } from "next/navigation";
 
-export default function Home() {
+export default async function Home() {
+  const supabase = await createServerSupabase();
+
+  const {
+    data: { session },
+  } = await supabase.auth.getSession();
+
+  // Si hay sesión, envía directo al feed
+  if (session) {
+    redirect("/feed");
+  }
+
+
+
   return (
     <div className="px-6 py-6">
       {/* HERO */}

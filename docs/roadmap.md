@@ -1,24 +1,31 @@
-# Roadmap
-
-## Milestone 1 — Base del proyecto
+## Milestone 1 — Base del proyecto ✅
 - [x] Next.js + Tailwind
-- [x] Repo GitHub y documentación básica
-- [ ] Supabase: variables env + cliente
-- [ ] Auth: signup/login + sesión
+- [x] Repo GitHub y documentación base
+- [x] Supabase: variables env + clientes (browser/SSR)
+- [x] Auth: signup/login + sesión (route group `(auth)`)
 
-## Milestone 2 — Perfil y Feed
-- [ ] Tabla `profiles` y formulario de edición
-- [ ] Tabla `posts` y feed con listado
-- [ ] Crear post (texto + imagen)
-- [ ] Likes y contador
+## Milestone 2 — Perfil y Feed ✅
+- [x] Tabla `profiles` con RLS + trigger de provisioning
+- [x] Formulario de edición de perfil con Server Action
+- [x] Storage `avatars` (políticas por carpeta)
+- [x] Tabla `posts` y feed con listado
+- [x] Crear post (texto + imagen)
+- [x] Onboarding suave (redirigir a `/profile/edit` si faltan `username` o `avatar`)
 
-## Milestone 3 — UX y despliegue
-- [ ] Diseño UI sólido con Tailwind (dark mode)
-- [ ] Deploy en Vercel + Supabase
+## Milestone 3 — Amigos y Notificaciones ✅ (MVP)
+- [x] Tabla `friendships` + RLS (select/insert/update seguro)
+- [x] Envío de solicitud, aceptar/declinar
+- [x] Route `/api/notifications/inbox` + Dropdown con acciones
+- [x] Contador SSR en campanita
+
+## Milestone 4 — UX y despliegue (en progreso)
+- [ ] Layout de feed con **sidebar izquierda** (navegación) y **derecha** (social)
+- [ ] Deploy en Vercel + Supabase (prod)
 - [ ] Dominio personalizado
 
-## Milestone 4 — Avanzado
+## Milestone 5 — Avanzado
 - [ ] Realtime (notificaciones/chat)
-- [ ] Storage (avatars e imágenes)
+- [ ] Sugerencias de usuarios (“gente que quizá conozcas”)
+- [ ] Likes y contador en posts
 - [ ] Tests (unitarios y e2e)
-- [ ] TypeScript
+- [ ] Migración a TypeScript

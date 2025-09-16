@@ -1,51 +1,87 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Capifriends
 
-## Getting Started
+Capifriends es la evolución de una red social educativa a una aplicación moderna construida con **Next.js (App Router) + Tailwind CSS + Supabase (PostgreSQL)**.  
+El objetivo es aprender un stack actual y, al mismo tiempo, construir una base sólida para funcionalidades sociales reales como autenticación, perfiles, publicaciones, likes, comentarios y actualizaciones en tiempo real.
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## 🧱 Stack Tecnológico
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- **Frontend**: Next.js 14+ (App Router), React 18, Tailwind CSS
+- **Backend**: Supabase (PostgreSQL gestionado, Auth, Storage, RLS)
+- **Infraestructura**: Vercel (frontend), Supabase (BD y backend)
+- **Calidad**: ESLint, Prettier, Conventional Commits, GitHub Actions (futuro)
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🔧 Requisitos Previos
 
-## Learn More
+- Node.js LTS (≥ 20)
+- npm (≥ 10)
+- Cuenta en Supabase
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🚀 Puesta en Marcha en Local
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
-
-## Setup rápido (local)
-
-1. **Requisitos:** Node 22.15.0, npm 10.9.2, Supabase project activo.
-2. **Variables:**
-   - Crear `.env.local` con:
-     ```
-     NEXT_PUBLIC_SUPABASE_URL=...
-     NEXT_PUBLIC_SUPABASE_ANON_KEY=...
-     ```
-3. **Instalación:**
+1. **Clonar el repositorio**
    ```bash
-   npm i
-   npm i @supabase/supabase-js @supabase/ssr
-   npm run dev
+   git clone https://github.com/<usuario>/capifriends-social-network
+   cd capifriends
+
+2. **Instalar dependencias**
+  ```bash
+  npm install
+  ```
+
+3. **Configurar variables de entorno**
+
+  Copiar el archivo de ejemplo:
+
+  ```bash
+  cp .env.example .env.local
+  ```
+  Rellenar con tus credenciales de Supabase:
+  ```bash
+  NEXT_PUBLIC_SUPABASE_URL=https://TU-PROYECTO.supabase.co
+  NEXT_PUBLIC_SUPABASE_ANON_KEY=TU_ANON_PUBLIC_KEY
+  ```
+
+4. **Ejecutar en modo desarrollo**
+  ```bash
+  npm run dev
+  ```
+Abrir en navegador: http://localhost:3000
+
+---
+
+## ⚙️ Scripts Disponibles
+npm run dev → Inicia el servidor de desarrollo
+
+npm run build → Genera el build de producción
+
+npm run start → Sirve el build en producción
+
+npm run lint → Ejecuta ESLint para verificar la calidad del código
+
+---
+
+## 🗺️ Documentación del Proyecto
+Toda la documentación se encuentra en la carpeta docs/ e incluye:
+
+progreso.md → Registro cronológico de cambios y avances
+
+arquitectura.md → Estructura y decisiones técnicas
+
+supabase.md → Configuración y uso de Supabase
+
+convenciones.md → Reglas de commits, ramas y estilo
+
+roadmap.md → Plan de desarrollo y fases
+
+checklists.md → Listas de control para PRs y releases
+
+---
+
+## 📄 Licencia
+Este proyecto está bajo licencia MIT. Puedes usarlo, modificarlo y distribuirlo libremente.

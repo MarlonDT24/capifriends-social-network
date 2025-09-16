@@ -1,45 +1,54 @@
 ## Changelog
-Este proyecto sigue el formato Keep a Changelog
-y el versionado semántico SemVer.
+Este proyecto sigue el formato Keep a Changelog y SemVer.
 
-[0.1.0] - 2025-08-09
-Added
-- Proyecto inicial con Next.js 14 + Tailwind CSS usando App Router.
-- Configuración de ESLint y package.json por defecto.
-- Documentación base:
-    - README.md con instrucciones de instalación y stack.
-    - .env.example para variables de entorno.
-    - Carpeta /docs con archivos iniciales: progreso, arquitectura, supabase, convenciones, roadmap, checklists.
-    - Carpeta .github/ con plantillas de Issues y Pull Requests.
+## [0.2.0] - 2025-08-28
+### Added
+- Rutas `/login` y `/signup` (route group `(auth)`) con Supabase Auth (`signUp`, `signInWithPassword`).
+- Middleware en Edge con `@supabase/ssr`:
+  - Protege `/feed` y `/profile/edit`.
+  - Redirige a `/feed` si se accede a `/login` o `/signup` con sesión activa.
+  - Preserva `redirectedFrom` para volver tras login.
+- Navbar dividido:
+  - `components/nav/Navbar.jsx` (Server, obtiene `user` y `profile`).
+  - `components/nav/NavbarClient.jsx` (Client, buscador, selector idioma, menú usuario).
+  - `components/nav/SearchBox.jsx`, `LangSwitcher.jsx`, `UserMenu.jsx`.
+- Botón de cierre de sesión `components/SignOutButton.jsx`.
+- Página `/profile/edit`:
+  - Server Component que obtiene perfil en SSR.
+  - `components/profile/EditProfileForm.jsx` (sube avatar a Storage).
+  - Server Action `app/profile/edit/actions.js::updateProfile` (RLS).
+- Storage `avatars`:
+  - Bucket público y policies de `INSERT/UPDATE` limitadas a carpeta `<uid>/...`.
+- Reorganización de carpetas:
+  - `lib/` (supabaseClient + supabaseServer) fuera de `app/`.
+  - `components/nav` y `components/profile` para una UI escalable.
 
-- Configuración de .gitignore para proteger .env.local.
+### Changed
+- Ajuste de ancho en `SearchBox` y mejoras de accesibilidad.
+- Persistencia del idioma en `LangSwitcher` y corrección de estado controlado.
+
+### Fixed
+- Error `value is not defined` en `LangSwitcher` (ahora recibe `value` y `onChange` por props).
+- Policies duplicadas en Storage/Profiles retiradas.
+
+---
 
 ## [0.1.1] - 2025-08-20
 ### Added
-- Navbar responsivo con buscador, selector de idioma, menú móvil y frase de enganche.
+- Navbar responsivo con buscador, selector de idioma, menú móvil.
 - Página de inicio con hero, skeletons de feed y beneficios.
-- Sistema de design tokens (bg/fg, brand, muted, border) y tokens específicos para header/footer.
+- Design tokens y layout global.
+
 ### Changed
-- Layout global: estructura semántica, accesibilidad y separación visual header/main/footer.
+- Ajustes de accesibilidad y estilos.
+
 ### Fixed
-- Logos PNG optimizados y clases Tailwind inconsistentes.
+- PNGs optimizados y clases Tailwind inconsistentes.
 
-[Unreleased]
-Planned
-- Conexión con Supabase (Auth + PostgreSQL).
-- Tablas profiles y posts con Row Level Security (RLS).
-- Páginas /signup y /login para autenticación de usuarios.
-- Estado de sesión global y rutas protegidas.
-- Documentación extendida en /docs/supabase.md.
+---
 
-## [Unreleased]
+## [0.1.0] - 2025-08-09
 ### Added
-- `public.profiles` table with 1:1 relation to `auth.users` and unique `username`.
-
-## [Unreleased]
-### Added
-- Database: `public.profiles` (1:1 con `auth.users`), RLS activado y policies de propiedad.
-- Provisioning: función `handle_new_user()` + trigger `on_auth_user_created`.
-- Infra: clientes Supabase (`supabaseClient.js` y `supabaseServer.js`) para browser y SSR.
-### Security
-- Row Level Security habilitado y políticas de lectura/escritura por usuario.
+- Proyecto inicial con Next.js + Tailwind.
+- Documentación base y plantillas de GitHub.
+- `.gitignore` para proteger `.env.local`.
