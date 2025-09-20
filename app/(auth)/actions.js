@@ -2,11 +2,17 @@
 
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
-import { createServerSupabase } from "@/lib/supabaseServer";
+import { createServerSupabaseAction } from "@/lib/supabaseServer";
 
 export async function signOut() {
-  const supabase = await createServerSupabase();
-  await supabase.auth.signOut();
+  const supabase = await createServerSupabaseAction();
+
+  const { error } = await supabase.auth.signOut();
+
+  if (error) {
+    console.error("Error during signOut:", error);
+    return { error: "Error al cerrar sesión" };
+  }
 
   // Revalida rutas/layouts donde aparece la sesión
   revalidatePath("/", "layout");

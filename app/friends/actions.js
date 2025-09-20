@@ -87,12 +87,20 @@ export async function sendFriendRequest( prevState, formData ) {
         };
       }
     }
+    
     if (existing.status === "declined") {
-      return {
-        ok: false,
-        message:
-          "La última solicitud fue rechazada. Podrás volver a intentarlo más adelante.",
-      };
+      const { error: delErr } = await supabase
+        .from("friendships")
+        .delete()
+        .eq("id", existing.id); // RLS delete: cualquiera de los dos puede borrar
+
+      if (delErr) {
+        return { ok: false, message: `No se pudo limpiar la solicitud previa: ${delErr.message}` };
+      }
+      // no retornes aquí → dejamos continuar al INSERT
+    } else {
+      // estados desconocidos: bloquea por seguridad
+      return { ok: false, message: "No se puede enviar la solicitud ahora." };
     }
   }
 
@@ -181,4 +189,58 @@ export async function declineFriendRequestForm(arg1, arg2) {
   const id = fd?.get("requestId")?.toString() ?? "";
   if (!id) return { ok: false, message: "Falta requestId" };
   return declineFriendRequestAction(id);
+}
+
+// CANCELAR solicitud que YO envié
+export async function cancelFriendRequestAction(requestId) {
+  const supabase = await createServerSupabase();
+  const { data: auth } = await supabase.auth.getUser();
+  if (!auth?.user) return { ok: false, message: "No autenticado." };
+  const me = auth.user.id;
+
+  const { error } = await supabase
+    .from("friendships")
+    .delete()
+    .eq("id", requestId)
+    .eq("requester_id", me);
+
+  if (error) return { ok: false, message: error.message };
+  revalidatePath("/"); revalidatePath("/friends"); revalidatePath("/search");
+  return { ok: true };
+}
+
+// DEJAR DE SER AMIGOS (borra la fila accepted en cualquier dirección)
+export async function unfriendAction(otherUserId) {
+  const supabase = await createServerSupabase();
+  const { data: auth } = await supabase.auth.getUser();
+  if (!auth?.user) return { ok: false, message: "No autenticado." };
+  const me = auth.user.id;
+
+  const { error } = await supabase
+    .from("friendships")
+    .delete()
+    .eq("status", "accepted")
+    .or(
+      `and(requester_id.eq.${me},addressee_id.eq.${otherUserId}),` +
+      `and(requester_id.eq.${otherUserId},addressee_id.eq.${me})`
+    );
+
+  if (error) return { ok: false, message: error.message };
+  revalidatePath("/"); revalidatePath("/friends"); revalidatePath("/search");
+  return { ok: true };
+}
+
+// ---- Wrappers para <form action={...}> ----
+export async function cancelFriendRequestForm(arg1, arg2) {
+  const fd = arg2 instanceof FormData ? arg2 : arg1;
+  const id = fd?.get("requestId")?.toString() ?? "";
+  if (!id) return { ok: false, message: "Falta requestId" };
+  return cancelFriendRequestAction(id);
+}
+
+export async function unfriendForm(arg1, arg2) {
+  const fd = arg2 instanceof FormData ? arg2 : arg1;
+  const otherId = fd?.get("otherId")?.toString() ?? "";
+  if (!otherId) return { ok: false, message: "Falta otherId" };
+  return unfriendAction(otherId);
 }

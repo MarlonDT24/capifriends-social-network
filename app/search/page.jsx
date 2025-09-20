@@ -25,6 +25,31 @@ export default async function SearchPage({ searchParams }) {
     results = (data ?? []).filter((p) => p.id !== user?.id);
   }
 
+   // Mapa de relación
+  const relMap = new Map();
+  if (user && results.length > 0) {
+    const ids = results.map((r) => r.id);
+    //Solicitudes que YO envié
+    const { data: outRows } = await supabase
+    .from("friendships")
+    .select("id, requester_id, addressee_id, status")
+    .eq("requester_id", user.id)
+    .in("addressee_id", ids);
+
+    // solicitudes que YO recibí -> (in)
+    const { data: inRows } = await supabase
+      .from("friendships")
+      .select("id, requester_id, addressee_id, status")
+      .eq("addressee_id", user.id)
+      .in("requester_id", ids);
+
+    for (const r of [...(outRows ?? []), ...(inRows ?? [])]) {
+      const role = r.requester_id === user.id ? "out" : "in";
+      const otherId = role === "out" ? r.addressee_id : r.requester_id;
+      relMap.set(otherId, { id: r.id, status: r.status, role });
+    }
+  }
+
   return (
     <main className="max-w-2xl mx-auto p-6 space-y-6">
       <header>
@@ -52,7 +77,7 @@ export default async function SearchPage({ searchParams }) {
               <div className="flex items-center gap-3 min-w-0">
                 <img
                   src={p.avatar_url || "/profile_icon.png"}
-                  alt=""
+                  alt="Icon user"
                   className="h-10 w-10 rounded-full object-cover"
                 />
                 <div className="min-w-0">
@@ -68,7 +93,7 @@ export default async function SearchPage({ searchParams }) {
               <div className="shrink-0">
                 {user ? (
                   // Botón para enviar solicitud de amistad directamente desde el buscador
-                  <AddFriendButton username={p.username} />
+                  <AddFriendButton addresseeId={p.id} username={p.username} relationship={relMap.get(p.id) || null} />
                 ) : (
                   <Link href="/login" className="text-sm underline">
                     Inicia sesión
