@@ -2,8 +2,10 @@
 
 ## Stack
 - **Next.js (App Router)** — UI + SSR/SSG + Server Actions.
+- **React 19** — Componentes, hooks, Server/Client Components
 - **Supabase** — PostgreSQL, Auth (email+password), Storage, Row Level Security.
 - **Tailwind CSS** — utilidades y theming con design tokens.
+- **Lucide React** — Iconografía consistente
 
 ## Enrutado (App Router)
 - Rutas públicas: `/`, `/login`, `/signup`.
