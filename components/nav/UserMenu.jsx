@@ -56,7 +56,7 @@ export default function UserMenu({ user, profile, open, setOpen }) {
             Feed
           </Link>
           <Link
-            href="/profile/edit"
+            href={`/profile/${profile?.username}`}
             className="block px-3 py-2 text-sm hover:bg-muted"
             onClick={() => setOpen(false)}
           >
