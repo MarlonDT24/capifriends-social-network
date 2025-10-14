@@ -54,7 +54,7 @@ export default function NavbarClient({
 
   return (
     /* NAVBAR */
-    <header className="bg-header-background text-header-foreground sticky top-0 border-b">
+    <header className="bg-header-background text-header-foreground sticky top-0 border-b z-10">
       <nav
         className="max-w-6xl mx-auto flex items-center justify-between p-4"
         aria-label="Principal"

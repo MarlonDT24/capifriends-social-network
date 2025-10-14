@@ -38,7 +38,6 @@ export default function EditProfileForm({ initial, action, onboarding = false })
       <form
         action={formAction}
         className="space-y-4"
-        encType="multipart/form-data"
       >
         {/* bandera para onboarding sólo si aplica */}
         {onboarding && <input type="hidden" name="onboarding" value="1" />}

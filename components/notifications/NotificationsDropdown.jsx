@@ -94,7 +94,7 @@ export default function NotificationsDropdown({ initialCount = 0 }) {
           id="notif-popover"
           role="dialog"
           aria-label="Notificaciones"
-          className="absolute right-0 mt-2 w-[320px] sm:w-[360px] rounded-xl border bg-popover text-popover-foreground shadow-lg z-50"
+          className="absolute right-0 mt-2 w-[320px] sm:w-[360px] rounded-xl border bg-popover text-popover-foreground shadow-lg z-20"
         >
           <div className="flex items-center justify-between px-3 py-2 border-b">
             <div className="font-medium">Notificaciones</div>
