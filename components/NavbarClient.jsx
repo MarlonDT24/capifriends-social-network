@@ -1,3 +1,4 @@
+// components/NavbarClient.jsx
 "use client";
 import Link from "next/link";
 import Image from "next/image";
@@ -200,7 +201,7 @@ export default function NavbarClient({
                   Feed
                 </Link>
                 <Link
-                  href="/profile/edit"
+                  href={`/profile/${profile?.username}`}
                   className="w-full text-center px-3 py-2 rounded-md bg-background border text-sm"
                   onClick={() => setMobileMenu(false)}
                 >

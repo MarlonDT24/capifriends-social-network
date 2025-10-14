@@ -1,3 +1,4 @@
+// components/Navbar.jsx
 import { createServerSupabase } from "@/lib/supabaseServer";
 import NavbarClient from "./NavbarClient";
 
