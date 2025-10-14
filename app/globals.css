@@ -7,6 +7,18 @@
   --foreground: #171717;
   --seconground: #F2994A;
 
+  /* Azul océano principal */
+  --ocean-primary: #1e40af;      /* blue-800 */
+  --ocean-secondary: #2563eb;    /* blue-600 */
+  --ocean-light: #dbeafe;        /* blue-100 */
+  --ocean-accent: #93c5fd;       /* blue-300 */
+
+  /* NUEVA: Verde naturaleza */
+  --nature-primary: #16a34a;     /* green-600 */
+  --nature-secondary: #22c55e;   /* green-500 */
+  --nature-light: #dcfce7;       /* green-100 */
+  --nature-accent: #4ade80;      /* green-400 */
+
   /* Header y Footer */
   --header-background: #f9fafb;       /* gris claro */
   --header-foreground: #111827;       /* casi negro */
@@ -14,12 +26,17 @@
   --footer-foreground: #374151;       /* gris medio */
 
   /* Paleta base para la marca */
-  --brand: #2563eb;         /* azul-600 */
+  --brand: var(--ocean-secondary);         /* azul-600 */
   --brand-foreground: #ffffff;
 
   --muted: #f3f4f6;         /* gray-100 */
   --muted-foreground: #6b7280; /* gray-500 */
   --border: #e5e7eb;        /* gray-200 */
+
+  /* NUEVAS: Variables para gradientes */
+  --gradient-ocean: linear-gradient(135deg, var(--ocean-secondary), var(--ocean-primary));
+  --gradient-nature: linear-gradient(135deg, var(--nature-secondary), var(--nature-primary));
+  --gradient-mixed: linear-gradient(135deg, var(--ocean-light), var(--nature-light));
 }
 
 /* Modo oscuro por preferencia del sistema */
@@ -27,7 +44,19 @@
   :root {
     --background: #121826;
     --foreground: #ededed;
-    --seconground: #fe7600;
+    --seconground: #fe7600; 
+
+     /* Azules más brillantes para dark mode */
+    --ocean-primary: #3b82f6;      /* blue-500 más brillante */
+    --ocean-secondary: #5087cb;    /* blue-400 */
+    --ocean-light: #1e3a8a;        /* blue-900 */
+    --ocean-accent: #1d4ed8;       /* blue-700 */
+
+    /* Verde más suave para dark mode */
+    --nature-primary: #4ade80;     /* green-400 más suave */
+    --nature-secondary: #22c55e;   /* green-500 */
+    --nature-light: #14532d;       /* green-900 */
+    --nature-accent: #16a34a;      /* green-600 */
 
     /* Header y Footer en dark mode */
     --header-background: #1E2736;    
@@ -35,11 +64,16 @@
     --footer-background: #1f2937;
     --footer-foreground: #d1d5db;
 
-    --brand: #2563eb;
+    --brand: var(--ocean-secondary);
 
-    --muted: #111827;             /* gray-900 */
+    --muted: #334155;           /* gray-900 */
     --muted-foreground: #9ca3af;  /* gray-400 */
-    --border: #1f2937;            /* gray-800 */
+    --border: rgb(46, 57, 72);           /* gray-800 */
+
+    /* Gradientes actualizados para dark mode */
+    --gradient-ocean: linear-gradient(135deg, var(--ocean-secondary), var(--ocean-primary));
+    --gradient-nature: linear-gradient(135deg, var(--nature-secondary), var(--nature-primary));
+    --gradient-mixed: linear-gradient(135deg, var(--ocean-light), var(--nature-light));
   }
 }
 
@@ -61,11 +95,34 @@
   --color-brand: var(--brand);
   --color-brand-foreground: var(--brand-foreground);
 
+  /* NUEVAS: Colores océano y nature disponibles en Tailwind */
+  --color-ocean-primary: var(--ocean-primary);
+  --color-ocean-secondary: var(--ocean-secondary);
+  --color-ocean-light: var(--ocean-light);
+  --color-ocean-accent: var(--ocean-accent);
+
+  --color-nature-primary: var(--nature-primary);
+  --color-nature-secondary: var(--nature-secondary);
+  --color-nature-light: var(--nature-light);
+  --color-nature-accent: var(--nature-accent);
+
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 
   /* Radios y sombras por defecto de la UI para los posts */
   --radius: 0.75rem;
+
+  /* Para tarjetas (bg-card / text-card-foreground) */
+  --color-card: var(--background);                
+  --color-card-foreground: var(--foreground);    
+
+  /* Para popovers/menús (bg-popover / text-popover-foreground) */
+  --color-popover: var(--background);            
+  --color-popover-foreground: var(--foreground); 
+
+  /* Para hovers y fondos sutiles (bg-accent / text-accent-foreground) */
+  --color-accent: var(--muted);                  
+  --color-accent-foreground: var(--foreground);  
 }
 
 
@@ -99,4 +156,24 @@ body {
   background: var(--muted);
   animation: pulse-soft 1.4s ease-in-out infinite;
   border-radius: .5rem;
+}
+.ocean-gradient {
+  background: var(--gradient-ocean);
+}
+
+.nature-gradient {
+  background: var(--gradient-nature);
+}
+
+.mixed-gradient {
+  background: var(--gradient-mixed);
+}
+
+/* NUEVA: Transición suave para todos los elementos interactivos */
+.smooth-transition {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.spring-transition {
+  transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }

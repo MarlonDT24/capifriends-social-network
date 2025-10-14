@@ -5,11 +5,70 @@ El objetivo es aprender un stack actual y, al mismo tiempo, construir una base s
 
 ---
 
+## ✨ Características Principales
+# 🔐 Autenticación y Perfiles
+
+Registro e inicio de sesión con email y contraseña (Supabase Auth)
+Perfiles personalizables con avatar, bio y username único
+Perfiles públicos visitables /profile/[username]
+Onboarding suave para completar perfil tras registro
+Edición de perfil con upload de imágenes
+
+# 📝 Posts y Feed
+
+Crear posts con texto e imágenes (máx 500 caracteres)
+Feed cronológico con posts de la red
+Upload de imágenes a Supabase Storage
+Composer con auto-resize, validación y preview de imágenes
+Contadores en tiempo real (likes, comentarios, guardados)
+
+# 💬 Comentarios
+
+Sistema completo de comentarios en posts
+Eliminar comentarios propios
+Avatar y username del autor en cada comentario
+Timestamps relativos
+
+# ❤️ Interacciones
+
+Likes: dar/quitar like en posts con un click
+Bookmarks: guardar posts favoritos para ver después
+Comentarios: responder a cualquier post
+Contadores actualizados automáticamente
+
+# 👥 Sistema de Amistades
+
+Enviar solicitudes de amistad
+Aceptar/rechazar solicitudes
+Cancelar solicitudes pendientes
+Dejar de ser amigos
+Notificaciones en campanita con contador
+Búsqueda de usuarios por username o nombre
+Estados visuales claros (pendiente, amigos, sin relación)
+
+# 🔍 Búsqueda y Descubrimiento
+
+Buscador global en navbar
+Resultados por username o nombre completo
+Búsqueda case-insensitive optimizada
+Botón inteligente según estado de amistad
+
+# 📱 Interfaz de Usuario
+
+Diseño responsive (móvil first)
+Dark mode compatible (próximamente)
+Navbar sticky con campanita de notificaciones
+Tabs en perfiles (Posts, Guardados, Amigos)
+Animaciones suaves y feedback visual
+Accesibilidad (ARIA labels, contraste WCAG AA)
+
+---
+
 ## 🧱 Stack Tecnológico
 
-- **Frontend**: Next.js 14+ (App Router), React 18, Tailwind CSS
+- **Frontend**: Next.js 15+ (App Router), React 19, Tailwind CSS 4
 - **Backend**: Supabase (PostgreSQL gestionado, Auth, Storage, RLS)
-- **Infraestructura**: Vercel (frontend), Supabase (BD y backend)
+- **Librerías**: Lucide React
 - **Calidad**: ESLint, Prettier, Conventional Commits, GitHub Actions (futuro)
 
 ---
