@@ -1,7 +1,7 @@
 "use client";
 import { useActionState, useState, useMemo } from "react";
 import Link from "next/link";
-import { signupAction } from "./actions";
+import { signupAction } from "../actions";
 
 /**
  * Reglas de validación locales (cliente)
